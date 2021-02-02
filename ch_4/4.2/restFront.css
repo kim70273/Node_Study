@@ -1,0 +1,14 @@
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+.formBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.listBox {
+  display: flex;
+  justify-content: space-between;
+}
