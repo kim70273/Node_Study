@@ -23,11 +23,24 @@ app.use(session({
   saveUninitialized: false,
   secret: process.env.COOKIE_SECRET,
   cookie: {
-    httpOnly: true,
+    httpOnly: true,//자바스크립트로 공격을 안당하기 위해 
     secure: false,
   },
-  name: 'session-cookie',
+  name: 'session-cookie',// 기본적으로는 connect.sid라 되어있음. 서명되어있기때문에 읽을수 없는 문자열로 됨
 }));
+/* 
+app.use('/', (req, res, next) =>{
+  if(session.id){
+    express.static(__dirname, 'public')(req, res, next) 미들웨어 확장법!!(미들웨어안에 다른사람이 만든 미들웨어를 넣는것)
+  }
+  else{
+    next();
+  }
+  
+}
+  ); 이런식으로 미들웨어안에 미들웨어 넣는것도 많이 쓰이는 패턴임.
+  로그인 한 사람에게만 뭔가 보여주고 싶을때!
+*/
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
